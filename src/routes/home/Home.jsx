@@ -1,9 +1,7 @@
-import { useContext } from "react";
 import styled from "styled-components";
 import Footer from "../../components/footer/Footer";
 import TitleHeader from "../../components/header/TitleHeader";
 import ProductItem from "../../components/productItem/ProductItem";
-import UserContext from "../../contexts/UserContext";
 
 
 export default function Home(){
@@ -117,7 +115,6 @@ export default function Home(){
             "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
         }
     ]
-    const {cart, setCart} = useContext(UserContext)
 
     return(
         <Main>
@@ -127,7 +124,7 @@ export default function Home(){
                     listProducts.map(item => <ProductItem productItem={item}/>)
                 }
             </ListItems>
-            <Footer cart={cart}/>
+            <Footer/>
         </Main>
     )
 }

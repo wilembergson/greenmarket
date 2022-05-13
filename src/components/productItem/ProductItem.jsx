@@ -20,12 +20,12 @@ export default function ProductItem(props){
             setSelected(false)
         }else{
             if(cartCopy !== null){
-                const products = [...cartCopy.products, {_id, name, price}]
+                const products = [...cartCopy.products, {_id, name, price, amount:1}]
                 const total = (parseFloat(cartCopy.total) + parseFloat(price)).toFixed(2)
                 setCart({products, total})
             }else{
                 
-                setCart({products:[{_id, name, price}], total: price})
+                setCart({products:[{_id, name, price, amount:1}], total: price})
 
             }
             setSelected(true)
