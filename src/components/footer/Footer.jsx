@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import UserContext from "../../contexts/UserContext";
 
-export default function Footer(){
+export default function Footer(props){
     const {cart, setCart} = useContext(UserContext)
     const navigate = useNavigate()
     return(
@@ -18,7 +18,7 @@ export default function Footer(){
                         <Total>R${cart.total}</Total>
                     </CartData>
                     <CartButtons>
-                        <Button onClick={()=> navigate('/confirm')}>Continuar</Button>
+                        <Button onClick={()=> navigate('/confirm')}>{props.title}</Button>
                     </CartButtons>
                 </>
             }

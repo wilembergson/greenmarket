@@ -124,7 +124,7 @@ export default function Home(){
                     listProducts.map(item => <ProductItem productItem={item}/>)
                 }
             </ListItems>
-            <Footer/>
+            <Footer title={'Continuar'}/>
         </Main>
     )
 }
