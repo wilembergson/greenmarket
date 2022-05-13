@@ -1,7 +1,9 @@
+import { useContext } from "react";
 import styled from "styled-components";
 import Footer from "../../components/footer/Footer";
 import TitleHeader from "../../components/header/TitleHeader";
 import ProductItem from "../../components/productItem/ProductItem";
+import UserContext from "../../contexts/UserContext";
 
 
 export default function Home(){
@@ -19,7 +21,49 @@ export default function Home(){
             "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
         },
         {
-            "_id": "627c9d4000df502ba183f75e",
+            "_id": "627c9d4000df502fba183f75e",
+            "name": "Abacate",
+            "price": "3.10",
+            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
+        },
+        {
+            "_id": "627c9d4000df502r3ba183f75e",
+            "name": "Abacate",
+            "price": "3.10",
+            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
+        },
+        {
+            "_id": "627c9d4000df502booa183f75e",
+            "name": "Abacate",
+            "price": "3.10",
+            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
+        },
+        {
+            "_id": "627c9d4000df5qw02ba183f75e",
+            "name": "Abacate",
+            "price": "3.10",
+            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
+        },
+        {
+            "_id": "627c9d4000df502ba8961183f75e",
+            "name": "Abacate",
+            "price": "3.10",
+            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
+        },
+        {
+            "_id": "627c9d400veve0df502ba183f75e",
+            "name": "Abacate",
+            "price": "3.10",
+            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
+        },
+        {
+            "_id": "627c9d4000df5qplx02ba183f75e",
+            "name": "Abacate",
+            "price": "3.10",
+            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
+        },
+        {
+            "_id": "62117c9d4000df502ba183f75e",
             "name": "Abacate",
             "price": "3.10",
             "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
@@ -31,91 +75,49 @@ export default function Home(){
             "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
         },
         {
-            "_id": "627c9d4000df502ba183f75e",
+            "_id": "627c9d400rtel0df502ba183f75e",
             "name": "Abacate",
             "price": "3.10",
             "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
         },
         {
-            "_id": "627c9d4000df502ba183f75e",
+            "_id": "627c9d4000df533m502ba183f75e",
             "name": "Abacate",
             "price": "3.10",
             "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
         },
         {
-            "_id": "627c9d4000df502ba183f75e",
+            "_id": "627c9d4000df502bartbo183f75e",
             "name": "Abacate",
             "price": "3.10",
             "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
         },
         {
-            "_id": "627c9d4000df502ba183f75e",
+            "_id": "627fffc9d4000df502ba183f75e",
             "name": "Abacate",
             "price": "3.10",
             "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
         },
         {
-            "_id": "627c9d4000df502ba183f75e",
+            "_id": "627ciii9d4000df502ba183f75e",
             "name": "Abacate",
             "price": "3.10",
             "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
         },
         {
-            "_id": "627c9d4000df502ba183f75e",
+            "_id": "62hh887c9d4000df502ba183f75e",
             "name": "Abacate",
             "price": "3.10",
             "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
         },
         {
-            "_id": "627c9d4000df502ba183f75e",
-            "name": "Abacate",
-            "price": "3.10",
-            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
-        },
-        {
-            "_id": "627c9d4000df502ba183f75e",
-            "name": "Abacate",
-            "price": "3.10",
-            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
-        },
-        {
-            "_id": "627c9d4000df502ba183f75e",
-            "name": "Abacate",
-            "price": "3.10",
-            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
-        },
-        {
-            "_id": "627c9d4000df502ba183f75e",
-            "name": "Abacate",
-            "price": "3.10",
-            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
-        },
-        {
-            "_id": "627c9d4000df502ba183f75e",
-            "name": "Abacate",
-            "price": "3.10",
-            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
-        },
-        {
-            "_id": "627c9d4000df502ba183f75e",
-            "name": "Abacate",
-            "price": "3.10",
-            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
-        },
-        {
-            "_id": "627c9d4000df502ba183f75e",
-            "name": "Abacate",
-            "price": "3.10",
-            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
-        },
-        {
-            "_id": "627c9d4000df502ba183f75e",
+            "_id": "627c9bb71d4000df502ba183f75e",
             "name": "Abacate",
             "price": "3.10",
             "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
         }
     ]
-
+    const {cart, setCart} = useContext(UserContext)
 
     return(
         <Main>
@@ -125,7 +127,7 @@ export default function Home(){
                     listProducts.map(item => <ProductItem productItem={item}/>)
                 }
             </ListItems>
-            <Footer/>
+            <Footer cart={cart}/>
         </Main>
     )
 }

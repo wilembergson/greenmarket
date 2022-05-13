@@ -1,9 +1,19 @@
+import { useContext, useState } from "react"
 import styled from "styled-components";
+import UserContext from "../../contexts/UserContext";
 
-export default function Footer(){
+export default function Footer(props){
+    const {cart} = useContext(UserContext)
+
     return(
         <HomeFooter>
-            <EmptyCartTitle>Selecione seus itens</EmptyCartTitle>
+            {console.log(cart)}
+            {(cart === null) ? 
+                <EmptyCartTitle>Selecione seus itens</EmptyCartTitle>
+            :
+                <h3>R${cart.total}</h3>
+            }
+            
         </HomeFooter>
     )
 }

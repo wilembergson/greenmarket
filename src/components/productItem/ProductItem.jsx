@@ -1,20 +1,39 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import styled from "styled-components"
+import UserContext from "../../contexts/UserContext"
 
 export default function ProductItem(props){
-    const {name, price, image} = props.productItem
+    const {cart, setCart} = useContext(UserContext)
+    const {_id, name, price, image} = props.productItem
     const [selected, setSelected] = useState(false)
 
-    function changeBorder(){
+    function selectItem(){
+        const cartCopy = cart
         if(selected){
+            if(cart.products.length === 1){
+                setCart(null)
+            }else if(cart.products.length > 1){
+                const products = cartCopy.products.filter((item) => item._id != _id)
+                const total = (parseFloat(cartCopy.total) - parseFloat(price)).toFixed(2)
+                setCart({products, total})
+            }
             setSelected(false)
         }else{
+            if(cartCopy !== null){
+                const products = [...cartCopy.products, {_id, name, price}]
+                const total = (parseFloat(cartCopy.total) + parseFloat(price)).toFixed(2)
+                setCart({products, total})
+            }else{
+                
+                setCart({products:[{_id, name, price}], total: price})
+
+            }
             setSelected(true)
         }
     }
 
     return(
-        <Item border={selected ? '6px solid rgba(239, 98, 98, 0.97)': 'none'} onClick={()=> changeBorder()}>
+        <Item border={selected ? '6px solid rgba(239, 98, 98, 0.97)': 'none'} onClick={()=> selectItem()}>
             <Image src={image} alt=""/>
             <Data>
                 <Name>{name}</Name>
