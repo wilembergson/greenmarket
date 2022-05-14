@@ -1,7 +1,10 @@
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import styled from "styled-components";
 import Footer from "../../components/footer/Footer";
 import TitleHeader from "../../components/header/TitleHeader";
 import ProductItem from "../../components/productItem/ProductItem";
+import axios from "axios";
 
 
 export default function Home(){
@@ -115,6 +118,19 @@ export default function Home(){
             "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
         }
     ]
+    /*let products = null
+    useEffect(()=>{
+        axios.get('https://green-market-projetao.herokuapp.com/products')
+            .then(response => {
+                console.log(response.data)
+                products = response.data
+            })
+            .catch(error => console.log('Não foi possivel obter os produtos.'))
+    }, [])*/
+    const navigate = useNavigate()
+    function goConfirm(){
+        navigate('/confirm')
+    }
 
     return(
         <Main>
@@ -124,7 +140,7 @@ export default function Home(){
                     listProducts.map(item => <ProductItem productItem={item}/>)
                 }
             </ListItems>
-            <Footer title={'Continuar'}/>
+            <Footer title={'Continuar'} route={goConfirm}/>
         </Main>
     )
 }

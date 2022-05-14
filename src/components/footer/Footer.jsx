@@ -6,6 +6,8 @@ import UserContext from "../../contexts/UserContext";
 export default function Footer(props){
     const {cart, setCart} = useContext(UserContext)
     const navigate = useNavigate()
+
+    
     return(
         <HomeFooter>
             {console.log(cart)}
@@ -18,7 +20,7 @@ export default function Footer(props){
                         <Total>R${cart.total}</Total>
                     </CartData>
                     <CartButtons>
-                        <Button onClick={()=> navigate('/confirm')}>{props.title}</Button>
+                        <Button onClick={()=> props.route()}>{props.title}</Button>
                     </CartButtons>
                 </>
             }

@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Footer from "../../components/footer/Footer";
 import TitleHeader from "../../components/header/TitleHeader";
@@ -9,7 +9,14 @@ import queryToStr from 'query-string';
 export default function ConfirmOrder(){
 
     const result = queryToStr.parse(useLocation().confirm);
-    const {cart} = useContext(UserContext)
+    const {cart, setCart} = useContext(UserContext)
+    const navigate = useNavigate()
+    function finishOrder(){
+        alert("Compra realizada com sucesso!")
+        setCart(null)
+        navigate('/')
+    }
+    console.log(result)
     return(
         <Main>
             <TitleHeader/>
@@ -26,7 +33,7 @@ export default function ConfirmOrder(){
                     </Halfline>
                 </Item>)}
             </ListItems>
-            <Footer title={'Finalizar'}/>
+            <Footer title={'Finalizar'} route={finishOrder}/>
         </Main>
     )
 }
