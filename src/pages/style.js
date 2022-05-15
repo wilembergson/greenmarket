@@ -12,16 +12,18 @@ const Container = styled.div`
   justify-content: ${(props) => props.justifyContent || 'initial'};
   align-items: center;
   align-self: ${(props) => props.alignSelf || 'initial'};
-
+  
   margin: ${(props) => props.margin || '0px'};
   padding: ${(props) => props.padding || '0px'};
   border-radius: ${(props) => props.borderRadius || '0px'};
+  
 `;
 const SelectedStyled = styled(Select)`
   width: 150%;
   font-family: 'Lexend Deca', sans-serif;
   color: #000;
   background: #FFFFFF;
+  
   /* padding: 21px; */
   border: 1px solid rgba(120, 177, 89, 0.25);
   border-radius: 12px;
@@ -42,6 +44,7 @@ caption {
 thead {
   background-color: #333;
   color: white;
+  
 }
 tbody tr:nth-child(odd) {
   background-color: #fff;
@@ -92,12 +95,12 @@ const Title = styled.h2`
   align-items: center;
   gap: 8px;
 
-  font-style: normal;
-  font-weight: 200;
-  font-size: 64px;
-  line-height: 80px;
+  font-family: 'Inspiration', cursive;
+    font-style: normal;
+    font-size: 100px;
+    line-height: 60px;
 
-  color: #000000;
+  color: #135713;
 
   margin-top: 16px;
   margin-bottom: 50px;

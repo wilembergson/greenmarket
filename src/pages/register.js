@@ -5,7 +5,7 @@ import useAuth from '../hooks/useAuth';
 import api from '../services/api';
 import {Title} from './style'
 
-function Login() {
+function Register() {
     const { auth,login } = useAuth();
     const navigation = useNavigate();
     const navigate =useNavigate();
@@ -57,6 +57,15 @@ function Login() {
         <Title>Green Market</Title>
         <Form onSubmit={handleSubmit}>
         <Input
+            placeholder="Nome"
+            type="nome"
+            onChange={(e) => handleChange(e)}
+            name="nome"
+            value={formData.nome}
+            required
+        />
+
+        <Input
             placeholder="E-mail"
             type="email"
             onChange={(e) => handleChange(e)}
@@ -72,11 +81,19 @@ function Login() {
             value={formData.password}
             required
         />
-        <Button type="submit">Entrar</Button>
+
+<Input
+            placeholder="Repita a senha"
+            type="password"
+            onChange={(e) => handleChange(e)}
+            name="password2"
+            value={formData.password2}
+            required
+        />
+        <Button type="submit">Registre-se</Button>
         </Form>
-        <StyledLink to="/register">Registre-se!</StyledLink>
     </Container>
 );
 }
 
-export default Login;
+export default Register;

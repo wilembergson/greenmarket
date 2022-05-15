@@ -5,6 +5,7 @@ import { AuthProvider } from './contexts/AuthContext';
 import Home from "./routes/home/Home";
 import ConfirmOrder from "./routes/confirmOrder/ConfirmOrder";
 import Login from "./pages/login";
+import Register from "./pages/register";
 
 export default function App(){
     const [cart, setCart] = useState(null)
@@ -17,6 +18,7 @@ export default function App(){
                     <Route path="/" element={<Home/>}/>
                     <Route path="/:confirm" element={<ConfirmOrder/>}/>
                     <Route path="/Login" element={<Login/>}/>
+                    <Route path="/Register" element={<Register/>}/>
                 </Routes>
             </BrowserRouter>
         </UserContext.Provider>
