@@ -43,7 +43,6 @@ export  function Topbar(){
                 
                     <span onClick={()=>navigate('/home')}>Home</span>
                     <span onClick={()=>navigate('/user')}>Perfil</span>
-                    <span onClick={sair}>Logout</span>
                         
             </div>
         </Container>

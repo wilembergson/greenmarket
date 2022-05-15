@@ -22,6 +22,7 @@ export default function Footer(props){
                     <CartButtons>
                         <Button onClick={()=> props.route()}>{props.title}</Button>
                     </CartButtons>
+                        
                 </>
             }
             
