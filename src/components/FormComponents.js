@@ -10,6 +10,7 @@ const Container = styled.div`
   align-self: ${(props) => props.alignSelf || 'initial'};
   padding: 0px 25px;
   min-height: 100vh;
+  background-color: #FBF6A9;
 `;
 
 const Form = styled.form`

@@ -11,24 +11,26 @@ function Login() {
     const navigate =useNavigate();
     const [formData, setFormData] = useState({
     email: '',
-    password: '',
+    password: ''
     });
     useEffect(() => {
     async function verificarLogin() {
         try{
         if (auth) {
-        const { data } = await api.getUser(auth);
-        if(data){
-            navigate('/home');
-        }
-        else{
-            return;
-        }
+            navigate('/')
+        // const { data } = await api.getUser(auth);
+        // if(data){
+        //     navigate('/home');
+        // }
+        // else{
+        //     return;
+        // }
         }
         }catch (error) {
         console.log(error);
         alert("Erro, recarregue a página em alguns segundos");
-        }}
+        }
+    }
         verificarLogin();
     },[auth])
 
@@ -43,9 +45,11 @@ function Login() {
     const user = { ...formData };
 
     try {
+        console.log(user)
         const { data } = await api.login(user);
+        console.log(data)
         login(data);
-        navigation('/home');
+        navigation('/');
     } catch (error) { 
         console.log(error);
         alert("Email ou senha incorretos");

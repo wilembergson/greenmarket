@@ -10,26 +10,29 @@ function Register() {
     const navigation = useNavigate();
     const navigate =useNavigate();
     const [formData, setFormData] = useState({
+    name:'',
     email: '',
     password: '',
+    confirmpassword: ''
+
     });
     useEffect(() => {
-    async function verificarLogin() {
-        try{
-        if (auth) {
-        const { data } = await api.getUser(auth);
-        if(data){
-            navigate('/home');
-        }
-        else{
-            return;
-        }
-        }
-        }catch (error) {
-        console.log(error);
-        alert("Erro, recarregue a página em alguns segundos");
-        }}
-        verificarLogin();
+    // async function verificarLogin() {
+    //     try{
+    //     if (auth) {
+    //     const { data } = await api.getUser(auth);
+    //     if(data){
+    //         navigate('/home');
+    //     }
+    //     else{
+    //         return;
+    //     }
+    //     }
+    //     }catch (error) {
+    //     console.log(error);
+    //     alert("Erro, recarregue a página em alguns segundos");
+    //     }}
+        // verificarLogin();
     },[auth])
 
 
@@ -43,9 +46,11 @@ function Register() {
     const user = { ...formData };
 
     try {
-        const { data } = await api.login(user);
-        login(data);
-        navigation('/home');
+        console.log(user)
+        const { data } = await api.createUser(user);
+        console.log(data)
+        // login(data);
+        navigation('/login');
     } catch (error) { 
         console.log(error);
         alert("Email ou senha incorretos");
@@ -60,7 +65,7 @@ function Register() {
             placeholder="Nome"
             type="nome"
             onChange={(e) => handleChange(e)}
-            name="nome"
+            name="name"
             value={formData.nome}
             required
         />
@@ -86,8 +91,8 @@ function Register() {
             placeholder="Repita a senha"
             type="password"
             onChange={(e) => handleChange(e)}
-            name="password2"
-            value={formData.password2}
+            name="confirmpassword"
+            value={formData.confirmpassword}
             required
         />
         <Button type="submit">Registre-se</Button>

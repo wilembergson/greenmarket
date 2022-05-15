@@ -47,7 +47,7 @@ const ListItems = styled.div`
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
-    background: #FBF6A9;
+    
     width: 100%;
     position: fixed;
     top: 80px;

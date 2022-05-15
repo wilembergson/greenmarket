@@ -150,7 +150,7 @@ const Url = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
-  background: #80CC74;
+  
   box-shadow: 0px 4px 24px rgba(120, 177, 89, 0.12);
   border: 1px solid rgba(120, 177, 89, 0.25);
   border-radius: 12px;

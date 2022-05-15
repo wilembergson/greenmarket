@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // const BASE_URL = 'https://hidden-mesa-58705.herokuapp.com/http://produapp.herokuapp.com';
 //const BASE_URL = 'https://produapp.herokuapp.com';
-const BASE_URL = 'http://localhost:4000';
+const BASE_URL = 'http://localhost:4009';
 
 function createConfig(token) {
   return {
@@ -37,12 +37,14 @@ async function getAdminResumeByDate(token, dateStart,dateEnd){
 }
 
 async function createUser(user) {
-  await axios.post(`${BASE_URL}/users`, user);
+  const data = await axios.post(`${BASE_URL}/auth/register`, user);
+  return data;
   
 }
 
 async function login(data) {
-  const token = await axios.post(`${BASE_URL}/login`, data);
+  const token = await axios.post(`${BASE_URL}/auth/login`, data);
+  console.log(token)
   return token;
 }
 
