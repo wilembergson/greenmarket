@@ -1,14 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import styled from "styled-components";
 import Footer from "../../components/footer/Footer";
 import TitleHeader from "../../components/header/TitleHeader";
 import ProductItem from "../../components/productItem/ProductItem";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
 
 export default function Home(){
-    const listProducts = [
+    /*const listProducts = [
         {
             "_id": "627c99752a127d466e8c1cab",
             "name": "Pimentão",
@@ -117,27 +117,28 @@ export default function Home(){
             "price": "3.10",
             "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
         }
-    ]
-    /*let products = null
-    useEffect(()=>{
-        axios.get('https://green-market-projetao.herokuapp.com/products')
-            .then(response => {
-                console.log(response.data)
-                products = response.data
-            })
-            .catch(error => console.log('Não foi possivel obter os produtos.'))
-    }, [])*/
+    ]*/
+    const [products, setProducts] = useState([])
     const navigate = useNavigate()
+    
+    useEffect(()=>{
+        const promise = axios.get('https://green-market-projetao.herokuapp.com/products')
+        .then(response => {
+            setProducts(response.data)
+        })
+        .catch(error => console.log('Não foi possivel obter os produtos.'))
+    }, [])
+
     function goConfirm(){
         navigate('/confirm')
     }
-
+    console.log(products)
     return(
         <Main>
             <TitleHeader/>
             <ListItems>
                 {
-                    listProducts.map(item => <ProductItem productItem={item}/>)
+                    products.map(item => <ProductItem productItem={item}/>)
                 }
             </ListItems>
             <Footer title={'Continuar'} route={goConfirm}/>
