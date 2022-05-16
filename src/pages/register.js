@@ -1,14 +1,11 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Button, Container, Form, Input, StyledLink } from '../components/FormComponents';
-import useAuth from '../hooks/useAuth';
 import api from '../services/api';
 import {Title} from './style'
 
 function Register() {
-    const { auth,login } = useAuth();
     const navigation = useNavigate();
-    const navigate =useNavigate();
     const [formData, setFormData] = useState({
     name:'',
     email: '',
