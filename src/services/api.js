@@ -110,5 +110,4 @@ const api = {
   getItems,
   getRank
 }
-
 export default api;
