@@ -1,7 +1,7 @@
 
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import Select from 'react-select'
+
 const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -48,12 +48,10 @@ const Input = styled.input`
   all: unset;
   box-sizing: border-box;
   font-family: 'Lexend Deca', sans-serif;
-
   width: 100%;
-
   color: #000;
   background: #FFFFFF;
-  padding: 10px;
+  padding: 20px;
   border: 1px solid rgba(120, 177, 89, 0.25);
   border-radius: 12px;
   box-shadow: 0px 4px 24px rgba(120, 177, 89, 0.12);
@@ -70,20 +68,20 @@ const Button = styled.button`
   cursor: pointer;
 
   width: 100%;
-
+  margin-top: 30px;
+  font-family: 'Inter';
   font-style: normal;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 18px;
-  
-  color: #FFFFFF;
-  
-  text-align: center;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 15px;
 
+  color: #FFFFFF;
+  text-align: center;
   padding: 10px;
-  
-  background: #5D9040;
+  background: #135713;
   border-radius: 12px;
+  width: 207px;
+  height: 60px;
 
   max-width: ${(props) => props.maxWidth || 'initial'};
 `;
@@ -93,12 +91,13 @@ const StyledLink = styled(Link)`
   box-sizing: border-box;
   cursor: pointer;
 
-  color: #000;
+  font-family: 'Inter';
   font-style: normal;
-  font-weight: bold;
-  font-size: 15px;
-  line-height: 18px;
-`;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 11px;
+  color: #137513;
+`
 
 export {
   Container,

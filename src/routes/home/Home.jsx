@@ -3,126 +3,20 @@ import styled from "styled-components";
 import Footer from "../../components/footer/Footer";
 import TitleHeader from "../../components/header/TitleHeader";
 import ProductItem from "../../components/productItem/ProductItem";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
-
+import UserContext from "../../contexts/UserContext";
+import useAuth from "../../hooks/useAuth";
+import API_URL from "../../CommonVariables";
 
 export default function Home(){
-    /*const listProducts = [
-        {
-            "_id": "627c99752a127d466e8c1cab",
-            "name": "Pimentão",
-            "price": "1.30",
-            "image": "https://a-static.mlcdn.com.br/618x463/pimentao-pimentao-verde/fruitexpress/ffe1f428caf811ebba344201ac18500e/63913b3076e82d73aa978fe9a59234c0.jpg"
-        },
-        {
-            "_id": "627c9d4000df502ba183f75e",
-            "name": "Abacate",
-            "price": "3.10",
-            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
-        },
-        {
-            "_id": "627c9d4000df502fba183f75e",
-            "name": "Abacate",
-            "price": "3.10",
-            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
-        },
-        {
-            "_id": "627c9d4000df502r3ba183f75e",
-            "name": "Abacate",
-            "price": "3.10",
-            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
-        },
-        {
-            "_id": "627c9d4000df502booa183f75e",
-            "name": "Abacate",
-            "price": "3.10",
-            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
-        },
-        {
-            "_id": "627c9d4000df5qw02ba183f75e",
-            "name": "Abacate",
-            "price": "3.10",
-            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
-        },
-        {
-            "_id": "627c9d4000df502ba8961183f75e",
-            "name": "Abacate",
-            "price": "3.10",
-            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
-        },
-        {
-            "_id": "627c9d400veve0df502ba183f75e",
-            "name": "Abacate",
-            "price": "3.10",
-            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
-        },
-        {
-            "_id": "627c9d4000df5qplx02ba183f75e",
-            "name": "Abacate",
-            "price": "3.10",
-            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
-        },
-        {
-            "_id": "62117c9d4000df502ba183f75e",
-            "name": "Abacate",
-            "price": "3.10",
-            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
-        },
-        {
-            "_id": "627c9d4000df502ba183f75e",
-            "name": "Abacate",
-            "price": "3.10",
-            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
-        },
-        {
-            "_id": "627c9d400rtel0df502ba183f75e",
-            "name": "Abacate",
-            "price": "3.10",
-            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
-        },
-        {
-            "_id": "627c9d4000df533m502ba183f75e",
-            "name": "Abacate",
-            "price": "3.10",
-            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
-        },
-        {
-            "_id": "627c9d4000df502bartbo183f75e",
-            "name": "Abacate",
-            "price": "3.10",
-            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
-        },
-        {
-            "_id": "627fffc9d4000df502ba183f75e",
-            "name": "Abacate",
-            "price": "3.10",
-            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
-        },
-        {
-            "_id": "627ciii9d4000df502ba183f75e",
-            "name": "Abacate",
-            "price": "3.10",
-            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
-        },
-        {
-            "_id": "62hh887c9d4000df502ba183f75e",
-            "name": "Abacate",
-            "price": "3.10",
-            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
-        },
-        {
-            "_id": "627c9bb71d4000df502ba183f75e",
-            "name": "Abacate",
-            "price": "3.10",
-            "image": "https://static1.conquistesuavida.com.br/articles//6/10/04/6/@/28484-o-avocado-e-um-tipo-de-abacate-menor-ma-article_block_media-3.jpg"
-        }
-    ]*/
+    
+    const {name, token} = useContext(UserContext)
     const [products, setProducts] = useState([])
     const navigate = useNavigate()
     
     useEffect(()=>{
-        const promise = axios.get('https://green-market-projetao.herokuapp.com/products')
+        const promise = axios.get(`${API_URL}/products`)
         .then(response => {
             setProducts(response.data)
         })
@@ -132,10 +26,14 @@ export default function Home(){
     function goConfirm(){
         navigate('/confirm')
     }
-    console.log(products)
+    
     return(
         <Main>
             <TitleHeader/>
+            <UserName>
+                Bem-vindo, {name}! 
+                <HistoricBtn onClick={()=> navigate('/ordersList')}>historico</HistoricBtn>
+            </UserName>
             <ListItems>
                 {
                     products.map(item => <ProductItem productItem={item}/>)
@@ -151,6 +49,22 @@ const Main = styled.main`
     background: #FBF6A9;
     position: relative;
 `
+const UserName = styled.h3`
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background: #FBF6A9;
+    position: absolute;
+    top: 80px;
+    padding: 15px;  
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 15px;
+    color: #135713;
+`
 const ListItems = styled.div`
     display: flex;
     justify-content: center;
@@ -159,7 +73,19 @@ const ListItems = styled.div`
     background: #FBF6A9;
     width: 100%;
     position: fixed;
-    top: 80px;
+    top: 120px;
     bottom: 120px;
     padding: 15px 0;
+`
+const HistoricBtn = styled.button`
+    color: #FFFFFF;
+    background: #135713;
+    border: none;
+    border-radius: 3px;
+    padding: 8px;
+    font-size: 16px;
+    margin-bottom: 8px;
+    position: absolute;
+    top: 8px;
+    right: 15px;
 `

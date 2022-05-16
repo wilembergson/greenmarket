@@ -1,8 +1,9 @@
 import axios from 'axios';
+import API_URL from '../CommonVariables';
 
 // const BASE_URL = 'https://hidden-mesa-58705.herokuapp.com/http://produapp.herokuapp.com';
 //const BASE_URL = 'https://produapp.herokuapp.com';
-const BASE_URL = 'http://localhost:4009';
+const BASE_URL = API_URL;
 
 function createConfig(token) {
   return {

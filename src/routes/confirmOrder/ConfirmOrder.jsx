@@ -4,19 +4,30 @@ import styled from "styled-components";
 import Footer from "../../components/footer/Footer";
 import TitleHeader from "../../components/header/TitleHeader";
 import UserContext from "../../contexts/UserContext";
-import queryToStr from 'query-string';
+import axios from "axios";
+import API_URL from "../../CommonVariables";
 
 export default function ConfirmOrder(){
-
-    const result = queryToStr.parse(useLocation().confirm);
-    const {cart, setCart} = useContext(UserContext)
+    const {cart, setCart, token} = useContext(UserContext)
     const navigate = useNavigate()
-    function finishOrder(){
-        alert("Compra realizada com sucesso!")
-        setCart(null)
-        navigate('/')
+
+    function finishOrder(e){
+        const promise = axios.post(`${API_URL}/orders`, {
+            products: cart.products,
+            total: cart.total
+        },
+        {
+            headers: {
+                authorization: `Bearer ${token}`
+            }
+        })
+        .then(response => {
+            alert("Compra realizada com sucesso!")
+            navigate('/home')
+            setCart(null)
+        })
+        .catch(error => console.log("Algo deu errado na sua Compra."))
     }
-    console.log(result)
     return(
         <Main>
             <TitleHeader/>
@@ -29,7 +40,6 @@ export default function ConfirmOrder(){
                     <Halfline>
                         <Label>{item.amount}</Label>
                         <Label>R${item.price}</Label>
-                        <Label>x</Label>
                     </Halfline>
                 </Item>)}
             </ListItems>
@@ -40,14 +50,13 @@ export default function ConfirmOrder(){
 
 const Main = styled.main`
     display: flex;
-    background: #FBF6A9;
     position: relative;
 `
 const ListItems = styled.div`
     display: flex;
     flex-direction: column;
     overflow-y: scroll;
-    
+    background: #FBF6A9;
     width: 100%;
     position: fixed;
     top: 80px;
@@ -58,7 +67,7 @@ const Item = styled.section`
     display: flex;
     width: 100%;
     height: 20px;
-    padding: 10px 0;
+    padding: 20px 0;
 `
 const Label = styled.label`
     font-family: 'Inter';

@@ -48,8 +48,8 @@ const Item = styled.section`
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    width: 130px;
-    height: 180px;
+    width: 150px;
+    height: 200px;
     background: rgba(85, 124, 54, 0.76);
     border-radius: 10px;
     margin: 10px 20px;
@@ -64,6 +64,7 @@ const Image = styled.img`
     position: absolute;
     top:10px;
     border-radius: 10px;
+    margin-bottom: 15px;
 `
 const Data = styled.div`
     display: flex;

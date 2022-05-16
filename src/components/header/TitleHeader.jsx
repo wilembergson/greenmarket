@@ -1,31 +1,36 @@
 import styled from 'styled-components'
-import React, {useState} from 'react'
-import Footer from "../../components/footer/Footer";
+import React, {useContext, useState} from 'react'
+import UserContext from '../../contexts/UserContext'
+import { useNavigate } from 'react-router-dom'
 
 export default function TitleHeader(){
+    const {setName, setToken, setCart} = useContext(UserContext)
+    const navigate = useNavigate()
 
-    const[nome, setNome] = useState()
-
-    const sair =(auth)=>{
-        localStorage.removeItem(auth)
+    function logOut(){
+        navigate('/')
+        setName(null)
+        setToken(null)
+        setCart(null)
     }
     return(
         <>
-        <Title>
-            <h3>GreenMarket</h3>
-        <ButtonLogout>
-        <button onClick={()=>sair('auth')}>Logout</button>
-        </ButtonLogout>
-        </Title>
+            <Title>
+                <h3>GreenMarket</h3>
+                <ButtonLogout onClick={()=> logOut()}>
+                    Sair
+                </ButtonLogout>
+            </Title>
         </>
     )
 }
 
 const Title = styled.div`
     display: flex;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 60px;
+    height: 80px;
     color: #FFFFFF;
     background: #135713;
     padding: 10px;
@@ -34,29 +39,16 @@ const Title = styled.div`
 
     font-family: 'Inspiration', cursive;
     font-style: normal;
-    font-size: 34px;
+    font-size: 38px;
     line-height: 50px;
 `
 
-const ButtonLogout = styled.div`
-    position: relative;
-    height: 70px;
+const ButtonLogout = styled.button`
     padding: 10px;
     left: 88%;
-    font-family: 'Inspiration', cursive;
     display: flex;
-    background-color: #A000A;
-    color: #87CEEB;
-    
-    button{
-        background-color: #95a842;  
-        color: white;
-        border-color: #95a842;
-        height: 45px;
-        border-radius: 10px;
-        width: 100%;
-        font: bold 15px arial, sans-serif;
-    }
-    
-    
+    color: #FFFFFF;
+    background: none;
+    border: none;
+    font-size: 20px;
 `

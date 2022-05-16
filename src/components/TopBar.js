@@ -4,30 +4,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from '../hooks/useAuth';
 import api from '../services/api';
 export  function Topbar(){
-    const { logout,auth} = useAuth();
-    const [user, setUser] = useState(null);
-
-
-
-    // useEffect(() => {
-    //     function capitalizeString(string) { 
-    //         let result = string[0].toUpperCase() +  
-    //           string.slice(1).toLowerCase(); 
-    //           return result;
-    //       } 
-    //      async function UserGet(){
-    //         try {
-    //             const { data } = await api.getUser(auth);
-    //             let name = capitalizeString(data.name);
-    //             console.log(name);
-                
-    //             setUser({...data,name});
-
-    //         }
-    //         catch (error) { console.log(error);}
-    //     }
-    //     UserGet()
-    // },[auth])
+    const { logout } = useAuth();
 
     const navigate =useNavigate();
     function sair(){

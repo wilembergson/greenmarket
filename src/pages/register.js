@@ -16,25 +16,6 @@ function Register() {
     confirmpassword: ''
 
     });
-    useEffect(() => {
-    // async function verificarLogin() {
-    //     try{
-    //     if (auth) {
-    //     const { data } = await api.getUser(auth);
-    //     if(data){
-    //         navigate('/home');
-    //     }
-    //     else{
-    //         return;
-    //     }
-    //     }
-    //     }catch (error) {
-    //     console.log(error);
-    //     alert("Erro, recarregue a página em alguns segundos");
-    //     }}
-        // verificarLogin();
-    },[auth])
-
 
     function handleChange({ target }) {
     setFormData({ ...formData, [target.name]: target.value });
@@ -50,7 +31,7 @@ function Register() {
         const { data } = await api.createUser(user);
         console.log(data)
         // login(data);
-        navigation('/login');
+        navigation('/');
     } catch (error) { 
         console.log(error);
         alert("Email ou senha incorretos");
@@ -59,7 +40,7 @@ function Register() {
 
     return (
     <Container>
-        <Title>Green Market</Title>
+        <Title>GreenMarket</Title>
         <Form onSubmit={handleSubmit}>
         <Input
             placeholder="Nome"
@@ -97,6 +78,7 @@ function Register() {
         />
         <Button type="submit">Registre-se</Button>
         </Form>
+        <StyledLink to="/">Login</StyledLink>
     </Container>
 );
 }
