@@ -17,7 +17,7 @@ export default function OrdersList(){
                 authorization: `Bearer ${token}`
             }
         })
-        .then(response => setOrders(response.data))
+        promise.then(response => setOrders(response.data))
         .catch(error => console.log("Não foi possivel obter a lista de compras."))
     }, [])
 
@@ -87,9 +87,6 @@ const Line = styled.div`
     justify-content: space-between;
     width: 100%;
     padding: 15px;
-`
-const Div = styled.div`
-    display: flex;
 `
 const ListFooter = styled.footer`
     display: flex;

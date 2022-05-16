@@ -1,8 +1,6 @@
 import axios from 'axios';
 import API_URL from '../CommonVariables';
 
-// const BASE_URL = 'https://hidden-mesa-58705.herokuapp.com/http://produapp.herokuapp.com';
-//const BASE_URL = 'https://produapp.herokuapp.com';
 const BASE_URL = API_URL;
 
 function createConfig(token) {
@@ -88,10 +86,7 @@ async function getUsers(token){
 }
 
 async function getRank(){
-
   const rank = await axios.get(`${BASE_URL}/rank`);
-
-
   return rank.data;
 }
 async function getResume(token){

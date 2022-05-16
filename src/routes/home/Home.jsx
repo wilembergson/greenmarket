@@ -6,18 +6,17 @@ import ProductItem from "../../components/productItem/ProductItem";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import UserContext from "../../contexts/UserContext";
-import useAuth from "../../hooks/useAuth";
 import API_URL from "../../CommonVariables";
 
 export default function Home(){
     
-    const {name, token} = useContext(UserContext)
+    const {name} = useContext(UserContext)
     const [products, setProducts] = useState([])
     const navigate = useNavigate()
     
     useEffect(()=>{
         const promise = axios.get(`${API_URL}/products`)
-        .then(response => {
+        promise.then(response => {
             setProducts(response.data)
         })
         .catch(error => console.log('Não foi possivel obter os produtos.'))

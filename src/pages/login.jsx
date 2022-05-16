@@ -1,4 +1,4 @@
-import React, { useState,useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Container, Form, Input, StyledLink } from '../components/FormComponents';
 import UserContext from '../contexts/UserContext';

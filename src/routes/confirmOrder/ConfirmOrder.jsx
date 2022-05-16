@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Footer from "../../components/footer/Footer";
 import TitleHeader from "../../components/header/TitleHeader";
@@ -21,7 +21,7 @@ export default function ConfirmOrder(){
                 authorization: `Bearer ${token}`
             }
         })
-        .then(response => {
+        promise.then(response => {
             alert("Compra realizada com sucesso!")
             navigate('/home')
             setCart(null)
@@ -91,7 +91,4 @@ const Halfline = styled.div`
     justify-content: space-between;
     width: 50%;
     padding: 15px;
-`
-const Div = styled.div`
-    display: flex;
 `

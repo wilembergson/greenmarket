@@ -1,11 +1,9 @@
 import { useContext } from "react"
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import UserContext from "../../contexts/UserContext";
 
 export default function Footer(props){
-    const {cart, setCart} = useContext(UserContext)
-    const navigate = useNavigate()
+    const {cart} = useContext(UserContext)
 
     
     return(
