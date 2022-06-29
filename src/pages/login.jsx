@@ -44,12 +44,12 @@ function Login() {
                 navigate('/home')
             })
             .catch(error => {
-                setLoading(false)
                 console.log("Não foi possivel obter a lista de compras.")}
             )
             
         } catch (error) { 
-            console.log(error);
+            console.log(error)
+            setLoading(false)
             alert("Email ou senha incorretos");
         }
     }
