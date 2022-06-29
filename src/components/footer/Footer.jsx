@@ -7,7 +7,6 @@ export default function Footer(props){
 
     return(
         <HomeFooter>
-            {console.log(cart)}
             {(cart === null) ? 
                 <EmptyCartTitle>Selecione seus itens</EmptyCartTitle>
             :

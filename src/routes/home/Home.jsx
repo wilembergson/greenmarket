@@ -11,7 +11,6 @@ import { Spin } from "react-cssfx-loading";
 export default function Home(){
     
     const name = JSON.parse(localStorage.getItem("auth")).name
-    //const name = JSON.parse(localStorage.getItem("name"))
     const [products, setProducts] = useState([])
     const navigate = useNavigate()
     

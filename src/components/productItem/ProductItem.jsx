@@ -13,7 +13,7 @@ export default function ProductItem(props){
             if(cart.products.length === 1){
                 setCart(null)
             }else if(cart.products.length > 1){
-                const products = cartCopy.products.filter((item) => item._id != _id)
+                const products = cartCopy.products.filter((item) => item._id !== _id)
                 const total = (parseFloat(cartCopy.total) - parseFloat(price)).toFixed(2)
                 setCart({products, total})
             }

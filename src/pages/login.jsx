@@ -8,6 +8,8 @@ import UserContext from '../contexts/UserContext';
 import useAuth from '../hooks/useAuth';
 import api from '../services/api';
 import {Title} from './style'
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
     const { login } = useAuth();
@@ -23,6 +25,7 @@ function Login() {
     setFormData({ ...formData, [target.name]: target.value });
     }
 
+    const erroMessage = () => toast.error("Emaio ou senha incorretos.", {autoClose: 3000, position: toast.POSITION.TOP_CENTER})
     async function handleSubmit(e) {
         e.preventDefault();
         setLoading(true)
@@ -50,12 +53,13 @@ function Login() {
         } catch (error) { 
             console.log(error)
             setLoading(false)
-            alert("Email ou senha incorretos");
+            erroMessage()
         }
     }
 
     return (
     <Container>
+        <ToastContainer toastClassName="dark-toast"/>
         {(!loading) ? 
         <>
             <Title>GreenMarket</Title>

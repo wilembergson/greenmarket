@@ -8,12 +8,16 @@ import axios from "axios";
 import API_URL from "../../CommonVariables";
 import { useState } from "react";
 import { Spin } from "react-cssfx-loading";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function ConfirmOrder(){
     const {cart, setCart} = useContext(UserContext)
     const token = JSON.parse(localStorage.getItem("auth")).token
     const navigate = useNavigate()
     const [loading, setLoading] = useState(false)
+    const sucessMessage = () => toast.success("Compra realizada com sucesso.", {autoClose: 3000, position: toast.POSITION.TOP_CENTER})
+    const erroMessage = () => toast.error("Algo deu errado na sua compra.", {autoClose: 3000, position: toast.POSITION.TOP_CENTER})
 
     function finishOrder(e){
         setLoading(true)
@@ -35,19 +39,22 @@ export default function ConfirmOrder(){
             promise.then(response => {
                 localStorage.setItem("historic", JSON.stringify(response.data))
             })
-            alert("Compra realizada com sucesso!")
-            navigate('/home')
-            setCart(null)
-            setLoading(false)
+            sucessMessage()
+            setTimeout(()=>{
+                setLoading(false)
+                navigate('/home')
+                setCart(null)
+            }, 3000)
         })
         .catch(error => {
-            console.log("Algo deu errado na sua Compra.")
+            erroMessage()
             setLoading(false)
         })
         
     }
     return(
         <Main>
+            <ToastContainer/>
             <TitleHeader/>
             <ListItems>
                 <LabelTitle>Meu carrinho</LabelTitle>
