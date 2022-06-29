@@ -5,7 +5,6 @@ import UserContext from "../../contexts/UserContext";
 export default function Footer(props){
     const {cart} = useContext(UserContext)
 
-    
     return(
         <HomeFooter>
             {console.log(cart)}

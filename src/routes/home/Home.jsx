@@ -3,14 +3,15 @@ import styled from "styled-components";
 import Footer from "../../components/footer/Footer";
 import TitleHeader from "../../components/header/TitleHeader";
 import ProductItem from "../../components/productItem/ProductItem";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
-import UserContext from "../../contexts/UserContext";
 import API_URL from "../../CommonVariables";
+import { Spin } from "react-cssfx-loading";
 
 export default function Home(){
     
-    const {name} = useContext(UserContext)
+    const name = JSON.parse(localStorage.getItem("auth")).name
+    //const name = JSON.parse(localStorage.getItem("name"))
     const [products, setProducts] = useState([])
     const navigate = useNavigate()
     
@@ -33,9 +34,13 @@ export default function Home(){
                 Bem-vindo, {name}! 
                 <HistoricBtn onClick={()=> navigate('/ordersList')}>historico</HistoricBtn>
             </UserName>
+            
             <ListItems>
-                {
-                    products.map(item => <ProductItem productItem={item}/>)
+                {(products.length!==0) ?
+                    (products.map(item => <ProductItem productItem={item}/>))
+                    : <Loading>
+                        <Spin color="#94a051" width="150px" height="150px" margin-top="150px"/>
+                    </Loading>
                 }
             </ListItems>
             <Footer title={'Continuar'} route={goConfirm}/>
@@ -43,6 +48,13 @@ export default function Home(){
     )
 }
 
+const Loading = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60vh;   
+`
 const Main = styled.main`
     display: flex;
     background: #FBF6A9;

@@ -6,12 +6,17 @@ import TitleHeader from "../../components/header/TitleHeader";
 import UserContext from "../../contexts/UserContext";
 import axios from "axios";
 import API_URL from "../../CommonVariables";
+import { useState } from "react";
+import { Spin } from "react-cssfx-loading";
 
 export default function ConfirmOrder(){
-    const {cart, setCart, token} = useContext(UserContext)
+    const {cart, setCart} = useContext(UserContext)
+    const token = JSON.parse(localStorage.getItem("auth")).token
     const navigate = useNavigate()
+    const [loading, setLoading] = useState(false)
 
     function finishOrder(e){
+        setLoading(true)
         const promise = axios.post(`${API_URL}/orders`, {
             products: cart.products,
             total: cart.total
@@ -22,32 +27,59 @@ export default function ConfirmOrder(){
             }
         })
         promise.then(response => {
+            const promise = axios.get(`${API_URL}/orders`,{
+                headers: {
+                    authorization: `Bearer ${token}`
+                }
+            })
+            promise.then(response => {
+                localStorage.setItem("historic", JSON.stringify(response.data))
+            })
             alert("Compra realizada com sucesso!")
             navigate('/home')
             setCart(null)
+            setLoading(false)
         })
-        .catch(error => console.log("Algo deu errado na sua Compra."))
+        .catch(error => {
+            console.log("Algo deu errado na sua Compra.")
+            setLoading(false)
+        })
+        
     }
     return(
         <Main>
             <TitleHeader/>
             <ListItems>
                 <LabelTitle>Meu carrinho</LabelTitle>
-                {cart.products.map(item => <Item>
-                    <Halfline>
-                        <Label>{item.name}</Label>
-                    </Halfline>
-                    <Halfline>
-                        <Label>{item.amount}</Label>
-                        <Label>R${item.price}</Label>
-                    </Halfline>
-                </Item>)}
+                {(!loading) ? 
+                <>
+                    {cart.products.map(item => <Item>
+                        <Halfline>
+                            <Label>{item.name}</Label>
+                        </Halfline>
+                        <Halfline>
+                            <Label>{item.amount}</Label>
+                            <Label>R${item.price}</Label>
+                        </Halfline>
+                    </Item>)}
+                </> : <Loading>
+                        <Spin color="#a3aa7f" width="150px" height="150px" margin-top="150px"/>
+                    </Loading>
+                }
+                
             </ListItems>
             <Footer title={'Finalizar'} route={finishOrder}/>
         </Main>
     )
 }
-
+const Loading = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    
+`
 const Main = styled.main`
     display: flex;
     position: relative;

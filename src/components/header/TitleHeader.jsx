@@ -12,6 +12,7 @@ export default function TitleHeader(){
         setName(null)
         setToken(null)
         setCart(null)
+        localStorage.clear()
     }
     return(
         <>

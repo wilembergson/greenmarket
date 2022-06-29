@@ -1,5 +1,8 @@
+import axios from 'axios';
+import { Spin } from "react-cssfx-loading";
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import API_URL from '../CommonVariables';
 import { Button, Container, Form, Input, StyledLink } from '../components/FormComponents';
 import UserContext from '../contexts/UserContext';
 import useAuth from '../hooks/useAuth';
@@ -14,6 +17,7 @@ function Login() {
     email: '',
     password: ''
     });
+    const [loading, setLoading] = useState(false)
 
     function handleChange({ target }) {
     setFormData({ ...formData, [target.name]: target.value });
@@ -21,13 +25,29 @@ function Login() {
 
     async function handleSubmit(e) {
         e.preventDefault();
+        setLoading(true)
         const user = { ...formData };
         try {
             const { data } = await api.login(user);
             setName(data.name)
             setToken(data.token)
             login(data);
-            navigate('/home')
+
+            const promise = axios.get(`${API_URL}/orders`,{
+                headers: {
+                    authorization: `Bearer ${data.token}`
+                }
+            })
+            promise.then(response => {
+                localStorage.setItem("historic", JSON.stringify(response.data))
+                setLoading(false)
+                navigate('/home')
+            })
+            .catch(error => {
+                setLoading(false)
+                console.log("Não foi possivel obter a lista de compras.")}
+            )
+            
         } catch (error) { 
             console.log(error);
             alert("Email ou senha incorretos");
@@ -36,27 +56,33 @@ function Login() {
 
     return (
     <Container>
-        <Title>GreenMarket</Title>
-        <Form onSubmit={handleSubmit}>
-            <Input
-                placeholder="E-mail"
-                type="email"
-                onChange={(e) => handleChange(e)}
-                name="email"
-                value={formData.email}
-                required
-            />
-            <Input
-                placeholder="Senha"
-                type="password"
-                onChange={(e) => handleChange(e)}
-                name="password"
-                value={formData.password}
-                required
-            />
-            <Button type="submit">Entrar</Button>
-        </Form>
-        <StyledLink to="/register">Registre-se!</StyledLink>
+        {(!loading) ? 
+        <>
+            <Title>GreenMarket</Title>
+            <Form onSubmit={handleSubmit}>
+                <Input
+                    placeholder="E-mail"
+                    type="email"
+                    onChange={(e) => handleChange(e)}
+                    name="email"
+                    value={formData.email}
+                    disabled={loading}
+                    required
+                />
+                <Input
+                    placeholder="Senha"
+                    type="password"
+                    onChange={(e) => handleChange(e)}
+                    name="password"
+                    value={formData.password}
+                    disabled={loading}
+                    required
+                />
+                <Button type="submit">Entrar</Button>
+            </Form>
+            <StyledLink to="/register" >Registre-se!</StyledLink>
+        </> 
+        : <Spin color="#94a051" width="150px" height="150px"/>}     
     </Container>
 );
 }

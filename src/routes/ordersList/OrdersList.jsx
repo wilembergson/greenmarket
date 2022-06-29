@@ -1,25 +1,13 @@
-import { useContext, useEffect, useState } from "react"
-import API_URL from "../../CommonVariables"
+import { useContext } from "react"
 import UserContext from "../../contexts/UserContext"
 import styled from 'styled-components'
-import axios from "axios"
 import TitleHeader from "../../components/header/TitleHeader"
 import { useNavigate } from "react-router-dom"
 
 export default function OrdersList(){
-    const {token, setCart} = useContext(UserContext)
-    const [orders, setOrders] = useState([])
+    const { setCart} = useContext(UserContext)
+    const orders = JSON.parse(localStorage.getItem("historic"))
     const navigate = useNavigate()
-
-    useEffect(()=>{
-        const promise = axios.get(`${API_URL}/orders`,{
-            headers: {
-                authorization: `Bearer ${token}`
-            }
-        })
-        promise.then(response => setOrders(response.data))
-        .catch(error => console.log("Não foi possivel obter a lista de compras."))
-    }, [])
 
     function backToHome(){
         navigate('/home')
